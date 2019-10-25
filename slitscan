@@ -1,0 +1,19 @@
+// Slitscan : Nous introduisons cette notion pour comprendre //COMMENT ACCEDER ET MANIPULER LES PXLS DE LA CAMERA//. Il s'agit d'une animation créée image par image. Son principe repose sur le mouvement relatif de la caméra par rapport 
+// à une source lumineuse, associé à un temps d'exposition long. Tout le monde a déjà vu des photographies prises de nuit, 
+// où les phares des voitures s'étirent en longues raies lumineuses. Le procédé du Slit-scan est similaire
+
+var video;
+
+function setup() {
+  createCanvas(640, 480);
+  video = createCapture(VIDEO);
+	video.size(width, height);
+  video.hide();
+}
+
+function draw() {
+  var speed = 1;
+  copy(video, 
+		0, (frameCount * speed) % video.height, 600, speed, //zone à capturer
+		0, (frameCount * speed) % video.height, 600, speed); // zone où copier la capture
+}
