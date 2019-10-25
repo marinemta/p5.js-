@@ -1,0 +1,28 @@
+var video;
+    
+    function setup() {
+      createCanvas(640, 480);
+      video = createCapture(VIDEO);
+      video.size(width, height);
+      video.hide();
+    }
+    
+    function draw() {
+      //image(video, 0, 0);
+      var couleur = video.get(mouseX, mouseY);
+      noStroke();
+      fill(couleur);
+      ellipse(mouseX, mouseY, random(5, 20)); // à ce stade les points (de taille aléatoire entre 5 et 20 pxls se créent en suivant le curseur)
+    
+    	/*
+    	// pour la partie de code suivante, 100 nouveaux points se mettent à chaque fois que la boucle s'execute, et de facon aléatoire
+      for(var i=0; i<100; i++){
+        var x = random(width);
+        var y = random(height);
+        var couleur = video.get(x, y);
+        noStroke();
+        fill(couleur);
+        ellipse(x, y, random(2, 15));
+      }
+    	*/
+    }
