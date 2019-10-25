@@ -1,0 +1,20 @@
+//Accessing pixels
+  //ColorPicker
+  
+ var video;
+
+function setup() {
+  createCanvas(640, 480);
+  video = createCapture(VIDEO);
+  video.size(width, height);
+  video.hide();
+}
+
+function draw() {
+  // image(video, 0, 0); //si je n'affiche pas cette ligne alors la toile sera noire, la vidéo en arrière plan, et je pourrais "peindre" la toile puisque chaque pixel se colorera au fur et à mesure que je bougerai mon cursus
+  
+  var couleur = get(mouseX, mouseY);
+  noStroke();
+  fill(couleur);
+  ellipse(x, y, 50, 50);
+}
