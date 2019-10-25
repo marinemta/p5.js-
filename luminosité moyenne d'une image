@@ -1,0 +1,42 @@
+var capture;
+    
+    function setup() {
+      createCanvas(640, 480);
+      capture = createCapture(VIDEO);
+      capture.size(width, height);
+      capture.hide();
+    }
+    
+    // [r g b a] r g b a r g b a ...
+    function draw() {
+      image(capture, 0, 0);
+      
+    //on vérifie qu'il y a bien des pixels, et on définit nos variables
+ 
+      capture.loadPixels();
+      if (capture.pixels.length > 0) {
+        var total = 0;
+        var i = 0;
+        
+    // cette partie nous permets d'analyser nos pixels un à un :
+       
+        for (var y = 0; y < height; y++) { //ligne d'instruction/analyse à chaque ligne
+        for (var x = 0; x < width; x++) { //sur chaque ligne j'avance de 1 à 1 pour créer une instruction à chaque pixel
+           
+    // on cherche la valeur, la proportion de rouge dans ce pixel :    
+    
+           var redValue = capture.pixels[i]; // take only the red value
+            total += redValue;
+            i += 4;
+          }
+        }
+    
+   // afficher un curseur en haut à gauche qui nous indique la luminosité moyenne de l'image 
+        var n = width * height;
+        var avg = int(total / n);
+        fill(avg);
+        rect(5, 5, 12, 12);
+        fill(255 - avg);
+        text(avg, 22, 17);
+      }
+    }
